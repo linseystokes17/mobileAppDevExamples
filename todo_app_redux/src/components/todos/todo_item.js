@@ -2,12 +2,11 @@ import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Container} from 'native-base';
 import { SwipeRow } from 'react-native-swipe-list-view';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export default class TodoListItem extends React.Component {
+export default class TodoItem extends React.Component {
   styles = StyleSheet.create({
     base: {
       backgroundColor: 'white',
@@ -39,15 +38,11 @@ export default class TodoListItem extends React.Component {
       flexDirection: 'row',
     },
     visible: {
-      
-    },
-    icon: {
-      padding: 12,
-      color: 'black',
     },
     listText:{
       fontSize: 20,
       paddingTop: 10,
+      paddingLeft: 30
     }
   });
 
@@ -56,11 +51,9 @@ export default class TodoListItem extends React.Component {
   }
 
   render() {
-    //console.log(this.props);
-    const { todo, onRowPress } = this.props;
+    const { item, onRowPress} = this.props;
     return (
       <SwipeRow
-        rightOpenValue={-125}
         leftOpenValue={125}
         stopRightSwipe={-145}
         stopLeftSwipe={145}
@@ -71,14 +64,10 @@ export default class TodoListItem extends React.Component {
           <TouchableOpacity onPress={this.delete} style={this.styles.deleteButton}>
             <Text style={this.styles.whiteText}>DELETE</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Create Todo')} style={this.styles.editButton}>
-            <Text style={this.styles.whiteText}>MODIFY</Text>
-          </TouchableOpacity>
         </View>
         <View flexDirection = 'row' style={[this.styles.base, this.styles.visible]}>
           {/* VISIBLE: visible by default */}
-          <Icon size = {24} name = {todo.icon} style = {this.styles.icon}></Icon>
-          <Text style = {this.styles.listText}>{todo.title}</Text>
+          <Text style = {this.styles.listText}>{item.title}</Text>
         </View>
       </SwipeRow>
     );

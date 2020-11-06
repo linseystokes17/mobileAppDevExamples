@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { constants } from '../actions/todos';
+import { constants } from '../actions/lists';
 
 export default (store) => (next) => (action) => {
   const result = next(action);

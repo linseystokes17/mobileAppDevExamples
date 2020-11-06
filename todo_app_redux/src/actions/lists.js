@@ -6,15 +6,16 @@ export const constants = new Constants({
   GET_TODOS_DONE: 'GET_TODOS_DONE',
 })
 
-export const createTodo = (title, description, startTime, duration) => ({
-  type: constants.get("CREATE_TODO"),
-  payload: {
-    title,
-    description,
-    startTime,
-    duration,
+export const createTodo = (title, icon) => {
+  return {
+    type: constants.get("CREATE_TODO"),
+    payload: {
+      title,
+      icon
+    }
   }
-});
+};
+
 
 export const getTodos = () => ({
   type: constants.get('GET_TODOS'),
